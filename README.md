@@ -165,4 +165,6 @@ ctrl.pt_exam_svc.record_pt_diff_measurement(1, "A", "A", origin="manual", voltag
 
 执行前仍需满足对应步骤的流程前置条件；manual 路径会跳过虚拟表笔位置和 physics 读数校验。hardware 路径在相同结构化读数基础上还必须传 `timestamp` 和 `instrument_id`。
 
-启动时若仍看到 matplotlib 字体缓存警告，可忽略；缓存目录已统一指向 `/tmp/matplotlib_threephase`。
+UI 测试面板的四个测量步骤已提供“虚拟表笔录入 / 手动录入（真实仪表）”切换。切到手动录入后，按指引测量对应端子并填写读数，记录仍写入同一个 records dict，可与虚拟表笔记录混用。
+
+启动时若仍看到 matplotlib 字体缓存警告，可忽略；缓存目录已统一指向系统临时目录下的 `matplotlib_threephase`。

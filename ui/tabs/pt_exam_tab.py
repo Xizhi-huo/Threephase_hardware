@@ -18,6 +18,7 @@ from ui.tabs._step_style import (
     set_step_item,
     tone_from_color,
 )
+from ui.widgets._record_view import origin_text
 
 
 _RECORD_KEYS = tuple(f"{gen_phase}{bus_phase}" for gen_phase in "ABC" for bus_phase in "ABC")
@@ -265,7 +266,7 @@ class PtExamTab(QtWidgets.QWidget):
             for key, label in self._record_labels.items():
                 record = records.get(key)
                 if record is not None:
-                    label.setText(f"{record['voltage_sec']:.2f} V ✓")
+                    label.setText(f"{origin_text(record)} · {record['voltage_sec']:.2f} V ✓")
                     set_record_value(label, "success")
             return
 
@@ -323,5 +324,5 @@ class PtExamTab(QtWidgets.QWidget):
                 label.setText("未记录")
                 set_record_value(label, "neutral")
             else:
-                label.setText(f"{record['voltage_sec']:.2f} V ✓")
+                label.setText(f"{origin_text(record)} · {record['voltage_sec']:.2f} V ✓")
                 set_record_value(label, "success")

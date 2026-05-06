@@ -19,7 +19,7 @@ from ui.tabs._step_style import (
     set_step_item,
     tone_from_color,
 )
-from ui.widgets._record_view import expand_phase_sequence_to_columns
+from ui.widgets._record_view import expand_phase_sequence_to_columns, origin_text
 
 
 _ALL_KEYS = ("PT1", "PT3")
@@ -249,10 +249,10 @@ class PtPhaseCheckTab(QtWidgets.QWidget):
             for key, label in self._record_labels.items():
                 record = expanded_records.get(key)
                 if record and record.get("passed") is True:
-                    label.setText("相序正确 ✓")
+                    label.setText(f"{origin_text(record)} · 相序正确 ✓")
                     set_record_value(label, "success")
                 elif record:
-                    label.setText("相序错误 ✗（接线有误）")
+                    label.setText(f"{origin_text(record)} · 相序错误 ✗（接线有误）")
                     set_record_value(label, "danger")
             return
 
@@ -321,8 +321,8 @@ class PtPhaseCheckTab(QtWidgets.QWidget):
                 label.setText("未记录")
                 set_record_value(label, "neutral")
             elif record.get("passed") is True:
-                label.setText("相序正确 ✓")
+                label.setText(f"{origin_text(record)} · 相序正确 ✓")
                 set_record_value(label, "success")
             else:
-                label.setText("相序错误 ✗（接线有误）")
+                label.setText(f"{origin_text(record)} · 相序错误 ✗（接线有误）")
                 set_record_value(label, "danger")

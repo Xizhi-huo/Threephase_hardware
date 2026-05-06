@@ -3,6 +3,7 @@ from typing import Callable, Optional, TYPE_CHECKING
 from PyQt5 import QtCore, QtWidgets
 
 from domain.constants import DEFAULT_PT_RATIO_ROWS
+from ui.widgets.manual_entry import PtVoltageManualEntryWidget
 from ui.widgets.step_panels._panel_builders import (
     add_blackbox_section,
     add_load_share_cabinet_section,
@@ -122,11 +123,31 @@ class PtVoltageCheckPanel(QtWidgets.QGroupBox):
         lay.addWidget(make_note_label("Gen2 起机后保持断路器断开（提供PT3参考）", "warning", italic=True))
         make_gen_block(lay, owner=self, api=self._api, gen_refs=self.gen_refs, step_key="s2", gen_id=2)
 
+        self._manual_mode = False
+        self._simulated_entry_widgets: list[QtWidgets.QWidget] = []
+        mode_row = make_inline_row()
+        mode_lay = QtWidgets.QHBoxLayout(mode_row)
+        mode_lay.setContentsMargins(0, 0, 0, 0)
+        mode_lay.setSpacing(6)
+        self._entry_mode_bg = QtWidgets.QButtonGroup(self)
+        self._sim_mode_rb = QtWidgets.QRadioButton("虚拟表笔录入")
+        self._manual_mode_rb = QtWidgets.QRadioButton("手动录入（真实仪表）")
+        self._sim_mode_rb.setChecked(True)
+        for rb in (self._sim_mode_rb, self._manual_mode_rb):
+            set_props(rb, inlineRadio=True)
+            self._entry_mode_bg.addButton(rb)
+            mode_lay.addWidget(rb)
+        self._manual_mode_rb.toggled.connect(lambda checked: self._set_manual_mode(bool(checked)))
+        lay.addWidget(mode_row)
+
         self.tp_s2_probe_lbl = make_feedback_label("当前表笔: 未放置")
         set_props(self.tp_s2_probe_lbl, feedbackText=True, tone="warning")
         lay.addWidget(self.tp_s2_probe_lbl)
+        self._simulated_entry_widgets.append(self.tp_s2_probe_lbl)
 
-        lay.addWidget(make_note_label("按相位快速记录（A→AB，B→BC，C→CA）:"))
+        quick_note = make_note_label("按相位快速记录（A→AB，B→BC，C→CA）:")
+        lay.addWidget(quick_note)
+        self._simulated_entry_widgets.append(quick_note)
         rrow = make_inline_row()
         rh = QtWidgets.QHBoxLayout(rrow)
         rh.setContentsMargins(0, 0, 0, 0)
@@ -140,6 +161,12 @@ class PtVoltageCheckPanel(QtWidgets.QGroupBox):
             rh.addWidget(btn)
             self.tp_s2_rec_btns[ph] = btn
         lay.addWidget(rrow)
+        self._simulated_entry_widgets.append(rrow)
+
+        self.manual_widget = PtVoltageManualEntryWidget(self)
+        self.manual_widget.submitted.connect(self._on_manual_submitted)
+        self.manual_widget.setVisible(False)
+        lay.addWidget(self.manual_widget)
 
         lay.addWidget(make_note_label("调节发电机使各 PT 一次侧线电压均达到 10.5 kV:", "primary"))
         self._tp_s2_fap = {
@@ -173,6 +200,21 @@ class PtVoltageCheckPanel(QtWidgets.QGroupBox):
         else:
             self._api.pt_voltage_check_state.feedback = "请先将表笔放在某一 PT 的两相端子上，再点击记录。"
             self._api.pt_voltage_check_state.feedback_color = "red"
+
+    def _set_manual_mode(self, manual: bool) -> None:
+        self._manual_mode = manual
+        for widget in self._simulated_entry_widgets:
+            widget.setVisible(not manual)
+        self.manual_widget.setVisible(manual)
+
+    def _on_manual_submitted(self, kwargs: dict) -> None:
+        try:
+            self._api.record_pt_voltage_measurement(**kwargs)
+        except ValueError as exc:
+            self.manual_widget._show_input_error(str(exc))
+            return
+        state = self._api.pt_voltage_check_state
+        set_feedback_label(self.tp_s2_fb_lbl, state.feedback, state.feedback_color)
 
     def on_enter(self) -> None:
         pass
@@ -216,4 +258,6 @@ class PtVoltageCheckPanel(QtWidgets.QGroupBox):
                     entry.setText(f"{getattr(gen, attr):.1f}")
 
         state = self._api.pt_voltage_check_state
+        for btn in self.tp_s2_rec_btns.values():
+            btn.setEnabled(in_mode and not self._manual_mode)
         set_feedback_label(self.tp_s2_fb_lbl, state.feedback, state.feedback_color)

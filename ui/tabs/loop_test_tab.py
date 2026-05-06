@@ -20,7 +20,7 @@ from ui.tabs._step_style import (
     set_step_item,
     tone_from_color,
 )
-from ui.widgets._record_view import continuity_to_status, reading_text
+from ui.widgets._record_view import continuity_to_status, origin_text, reading_text
 
 
 class LoopTestTabAPI(Protocol):
@@ -298,10 +298,11 @@ class LoopTestTab(QtWidgets.QWidget):
         status = continuity_to_status(record.get("continuity"))
         passed = bool(record.get("passed", status == "ok"))
         reading = reading_text(record)
+        origin = origin_text(record)
         if passed:
-            label.setText(f"{reading} ✓")
+            label.setText(f"{origin} · {reading} ✓")
             set_record_value(label, "success")
         else:
             expected = "导通" if pair[0] == pair[1] else "断路"
-            label.setText(f"{reading} ⚠ 期望{expected}")
+            label.setText(f"{origin} · {reading} ⚠ 期望{expected}")
             set_record_value(label, "warning")

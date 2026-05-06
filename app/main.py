@@ -532,8 +532,11 @@ class PowerSyncController:
     # ════════════════════════════════════════════════════════════════════════
     # 第一步：回路连通性测试 — 委托给 LoopTestService
     # ════════════════════════════════════════════════════════════════════════
-    def record_loop_measurement(self, pair):
-        self.loop_svc.record_loop_measurement(pair, origin="simulated")
+    def record_loop_measurement(self, pair, **kwargs):
+        if kwargs:
+            self.loop_svc.record_loop_measurement(pair, **kwargs)
+        else:
+            self.loop_svc.record_loop_measurement(pair, origin="simulated")
 
     def finalize_loop_test(self):
         self.loop_svc.finalize_loop_test()
@@ -569,8 +572,11 @@ class PowerSyncController:
     # ════════════════════════════════════════════════════════════════════════
     # 第二步：PT 单体线电压检查 — 委托给 PtVoltageCheckService
     # ════════════════════════════════════════════════════════════════════════
-    def record_pt_voltage_measurement(self, pt_name, phase_pair):
-        self.pt_voltage_svc.record_pt_voltage_measurement(pt_name, phase_pair, origin="simulated")
+    def record_pt_voltage_measurement(self, pt_name, phase_pair, **kwargs):
+        if kwargs:
+            self.pt_voltage_svc.record_pt_voltage_measurement(pt_name, phase_pair, **kwargs)
+        else:
+            self.pt_voltage_svc.record_pt_voltage_measurement(pt_name, phase_pair, origin="simulated")
 
     def finalize_pt_voltage_check(self):
         self.pt_voltage_svc.finalize_pt_voltage_check()
@@ -614,7 +620,9 @@ class PowerSyncController:
     def is_pt_phase_check_complete(self):
         return self.pt_phase_svc.is_pt_phase_check_complete()
 
-    def record_phase_sequence(self, pt_name: str, seq: str):
+    def record_phase_sequence(self, pt_name: str, seq: str, **kwargs):
+        if kwargs:
+            return self.pt_phase_svc.record_phase_sequence(pt_name, seq, **kwargs)
         return self.pt_phase_svc.record_phase_sequence(pt_name, seq, origin="simulated")
 
     # ════════════════════════════════════════════════════════════════════════
@@ -623,8 +631,11 @@ class PowerSyncController:
     def reset_pt_exam(self, gen_id=None):
         self.pt_exam_svc.reset_pt_exam(gen_id)
 
-    def record_pt_diff_measurement(self, gen_id, gen_phase, bus_phase):
-        self.pt_exam_svc.record_pt_diff_measurement(gen_id, gen_phase, bus_phase, origin="simulated")
+    def record_pt_diff_measurement(self, gen_id, gen_phase, bus_phase, **kwargs):
+        if kwargs:
+            self.pt_exam_svc.record_pt_diff_measurement(gen_id, gen_phase, bus_phase, **kwargs)
+        else:
+            self.pt_exam_svc.record_pt_diff_measurement(gen_id, gen_phase, bus_phase, origin="simulated")
 
     def record_current_pt_measurement(self, gen_id):
         """记录当前表笔位置对应的 PT 压差（由测试面板"记录当前"按钮调用）。"""

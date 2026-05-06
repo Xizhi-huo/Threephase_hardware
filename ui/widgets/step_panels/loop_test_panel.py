@@ -3,6 +3,7 @@ from typing import Callable, Optional, TYPE_CHECKING
 from PyQt5 import QtCore, QtWidgets
 
 from domain.test_states import LOOP_TEST_RECORD_KEYS
+from ui.widgets.manual_entry import LoopManualEntryWidget
 from ui.widgets.step_panels._panel_builders import (
     add_blackbox_section,
     add_load_share_cabinet_section,
@@ -89,8 +90,27 @@ class LoopTestPanel(QtWidgets.QGroupBox):
             show_engine=False,
         )
 
+        self._manual_mode = False
+        self._simulated_entry_widgets: list[QtWidgets.QWidget] = []
+        mode_row = make_inline_row()
+        mode_lay = QtWidgets.QHBoxLayout(mode_row)
+        mode_lay.setContentsMargins(0, 0, 0, 0)
+        mode_lay.setSpacing(6)
+        self._entry_mode_bg = QtWidgets.QButtonGroup(self)
+        self._sim_mode_rb = QtWidgets.QRadioButton("虚拟表笔录入")
+        self._manual_mode_rb = QtWidgets.QRadioButton("手动录入（真实仪表）")
+        self._sim_mode_rb.setChecked(True)
+        for rb in (self._sim_mode_rb, self._manual_mode_rb):
+            set_props(rb, inlineRadio=True)
+            self._entry_mode_bg.addButton(rb)
+            mode_lay.addWidget(rb)
+        self._manual_mode_rb.toggled.connect(lambda checked: self._set_manual_mode(bool(checked)))
+        lay.addWidget(mode_row)
+
         self.tp_s1_rec_btns = {}
-        lay.addWidget(make_note_label("回路测试快速记录（需先开启万用表）:"))
+        quick_note = make_note_label("回路测试快速记录（需先开启万用表）:")
+        lay.addWidget(quick_note)
+        self._simulated_entry_widgets.append(quick_note)
         for pairs in (LOOP_TEST_RECORD_KEYS[:3], LOOP_TEST_RECORD_KEYS[3:]):
             rrow = make_inline_row()
             rh = QtWidgets.QHBoxLayout(rrow)
@@ -102,6 +122,12 @@ class LoopTestPanel(QtWidgets.QGroupBox):
                 rh.addWidget(btn)
                 self.tp_s1_rec_btns[pair] = btn
             lay.addWidget(rrow)
+            self._simulated_entry_widgets.append(rrow)
+
+        self.manual_widget = LoopManualEntryWidget(self)
+        self.manual_widget.submitted.connect(self._on_manual_submitted)
+        self.manual_widget.setVisible(False)
+        lay.addWidget(self.manual_widget)
 
         if self._show_blackbox_dialog is not None:
             add_blackbox_section(
@@ -120,6 +146,21 @@ class LoopTestPanel(QtWidgets.QGroupBox):
         self.tp_s1_fb_lbl = make_feedback_label("请按步骤列表操作")
         lay.addWidget(self.tp_s1_fb_lbl)
 
+    def _set_manual_mode(self, manual: bool) -> None:
+        self._manual_mode = manual
+        for widget in self._simulated_entry_widgets:
+            widget.setVisible(not manual)
+        self.manual_widget.setVisible(manual)
+
+    def _on_manual_submitted(self, kwargs: dict) -> None:
+        try:
+            self._api.record_loop_measurement(**kwargs)
+        except ValueError as exc:
+            self.manual_widget._show_input_error(str(exc))
+            return
+        state = self._api.loop_test_state
+        set_feedback_label(self.tp_s1_fb_lbl, state.feedback, state.feedback_color)
+
     def on_enter(self) -> None:
         pass
 
@@ -137,6 +178,6 @@ class LoopTestPanel(QtWidgets.QGroupBox):
             rb.blockSignals(False)
         active = in_mode and sim.multimeter_mode
         for btn in self.tp_s1_rec_btns.values():
-            btn.setEnabled(active)
+            btn.setEnabled(active and not self._manual_mode)
         state = self._api.loop_test_state
         set_feedback_label(self.tp_s1_fb_lbl, state.feedback, state.feedback_color)

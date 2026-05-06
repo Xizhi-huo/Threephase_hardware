@@ -2,7 +2,8 @@ from typing import Callable, Optional, TYPE_CHECKING
 
 from PyQt5 import QtCore, QtWidgets
 
-from ui.tabs.circuit_tab import PhaseWiringStatus
+from ui.tabs.circuit_tab._phase_wiring import PhaseWiringStatus
+from ui.widgets.manual_entry import PhaseSequenceManualEntryWidget
 from ui.widgets.step_panels._panel_builders import (
     add_blackbox_section,
     add_load_share_cabinet_section,
@@ -61,7 +62,26 @@ class PtPhaseCheckPanel(QtWidgets.QGroupBox):
         lay.addWidget(make_note_label("Gen2 需起机，断路器保持断开", "warning", italic=True))
         make_gen_block(lay, owner=self, api=self._api, gen_refs=self.gen_refs, step_key="s3", gen_id=2)
 
-        lay.addWidget(make_note_label("相序仪（在母排图右侧查看转盘与指示灯）:"))
+        self._manual_mode = False
+        self._simulated_entry_widgets: list[QtWidgets.QWidget] = []
+        mode_row = make_inline_row()
+        mode_lay = QtWidgets.QHBoxLayout(mode_row)
+        mode_lay.setContentsMargins(0, 0, 0, 0)
+        mode_lay.setSpacing(6)
+        self._entry_mode_bg = QtWidgets.QButtonGroup(self)
+        self._sim_mode_rb = QtWidgets.QRadioButton("虚拟表笔录入")
+        self._manual_mode_rb = QtWidgets.QRadioButton("手动录入（真实仪表）")
+        self._sim_mode_rb.setChecked(True)
+        for rb in (self._sim_mode_rb, self._manual_mode_rb):
+            set_props(rb, inlineRadio=True)
+            self._entry_mode_bg.addButton(rb)
+            mode_lay.addWidget(rb)
+        self._manual_mode_rb.toggled.connect(lambda checked: self._set_manual_mode(bool(checked)))
+        lay.addWidget(mode_row)
+
+        psm_note = make_note_label("相序仪（在母排图右侧查看转盘与指示灯）:")
+        lay.addWidget(psm_note)
+        self._simulated_entry_widgets.append(psm_note)
         psm_row = make_inline_row()
         psm_h = QtWidgets.QHBoxLayout(psm_row)
         psm_h.setContentsMargins(0, 0, 0, 0)
@@ -74,8 +94,11 @@ class PtPhaseCheckPanel(QtWidgets.QGroupBox):
         btn_disc.clicked.connect(self._on_disconnect_psm)
         psm_h.addWidget(btn_disc)
         lay.addWidget(psm_row)
+        self._simulated_entry_widgets.append(psm_row)
 
-        lay.addWidget(make_note_label("记录相序结果:"))
+        rec_note = make_note_label("记录相序结果:")
+        lay.addWidget(rec_note)
+        self._simulated_entry_widgets.append(rec_note)
         rec_row = make_inline_row()
         rec_h = QtWidgets.QHBoxLayout(rec_row)
         rec_h.setContentsMargins(0, 0, 0, 0)
@@ -88,6 +111,12 @@ class PtPhaseCheckPanel(QtWidgets.QGroupBox):
             rec_h.addWidget(btn)
             self._tp_s3_rec_btns[pt_name] = btn
         lay.addWidget(rec_row)
+        self._simulated_entry_widgets.append(rec_row)
+
+        self.manual_widget = PhaseSequenceManualEntryWidget(self)
+        self.manual_widget.submitted.connect(self._on_manual_submitted)
+        self.manual_widget.setVisible(False)
+        lay.addWidget(self.manual_widget)
 
         if self._show_blackbox_dialog is not None:
             add_blackbox_section(
@@ -118,9 +147,26 @@ class PtPhaseCheckPanel(QtWidgets.QGroupBox):
         active_pt = self._phase_wiring_active_pt()
         for pt_name, btn in self._tp_s3_rec_btns.items():
             btn.setEnabled(
-                status == PhaseWiringStatus.READY
+                not self._manual_mode
+                and status == PhaseWiringStatus.READY
                 and active_pt == pt_name
             )
+
+    def _set_manual_mode(self, manual: bool) -> None:
+        self._manual_mode = manual
+        for widget in self._simulated_entry_widgets:
+            widget.setVisible(not manual)
+        self.manual_widget.setVisible(manual)
+        self._refresh_record_buttons()
+
+    def _on_manual_submitted(self, kwargs: dict) -> None:
+        try:
+            self._api.record_phase_sequence(**kwargs)
+        except ValueError as exc:
+            self.manual_widget._show_input_error(str(exc))
+            return
+        state = self._api.pt_phase_check_state
+        set_feedback_label(self.tp_s3_fb_lbl, state.feedback, state.feedback_color)
 
     def on_enter(self) -> None:
         if self._on_force_multimeter_off is not None:
@@ -169,6 +215,10 @@ class PtPhaseCheckPanel(QtWidgets.QGroupBox):
         status = self._phase_wiring_status()
         active_pt = self._phase_wiring_active_pt()
         state = self._api.pt_phase_check_state
+
+        if self._manual_mode:
+            set_feedback_label(self.tp_s3_fb_lbl, state.feedback, state.feedback_color)
+            return
 
         if status == PhaseWiringStatus.WIRING and active_pt:
             set_feedback_label(

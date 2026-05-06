@@ -50,6 +50,18 @@ def reading_text(record) -> str:
     return status_text(record)
 
 
+def origin_text(record) -> str:
+    if not record:
+        return "?"
+    origin = record.get("origin")
+    return {
+        "simulated": "虚拟",
+        "manual": "手动",
+        "hardware": "硬件",
+        "unknown": "?",
+    }.get(origin, "?")
+
+
 def expand_phase_sequence_to_columns(record) -> dict[str, dict[str, Any]]:
     if not record:
         return {}
@@ -66,6 +78,7 @@ def expand_phase_sequence_to_columns(record) -> dict[str, dict[str, Any]]:
             "quality": record.get("quality"),
             "reading": record.get("reading"),
             "passed": record.get("passed"),
+            "origin": record.get("origin"),
         }
         for phase in ("A", "B", "C")
     }

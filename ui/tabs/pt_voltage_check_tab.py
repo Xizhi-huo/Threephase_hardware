@@ -18,7 +18,7 @@ from ui.tabs._step_style import (
     set_step_item,
     tone_from_color,
 )
-from ui.widgets._record_view import reading_text
+from ui.widgets._record_view import origin_text, reading_text
 
 
 _ALL_KEYS = (
@@ -251,7 +251,7 @@ class PtVoltageCheckTab(QtWidgets.QWidget):
                 record = records.get(key)
                 if record is not None:
                     ok = record.get("passed") is True
-                    label.setText(f"{reading_text(record)} {'✓' if ok else '⚠'}")
+                    label.setText(f"{origin_text(record)} · {reading_text(record)} {'✓' if ok else '⚠'}")
                     set_record_value(label, "success" if ok else "warning")
             return
 
@@ -305,5 +305,5 @@ class PtVoltageCheckTab(QtWidgets.QWidget):
                 continue
 
             ok = record.get("passed") is True
-            label.setText(f"{reading_text(record)} {'✓' if ok else '⚠'}")
+            label.setText(f"{origin_text(record)} · {reading_text(record)} {'✓' if ok else '⚠'}")
             set_record_value(label, "success" if ok else "warning")
