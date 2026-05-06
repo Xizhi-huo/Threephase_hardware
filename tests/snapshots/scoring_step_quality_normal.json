@@ -1,0 +1,195 @@
+{
+  "items": [
+    {
+      "category": "第一步回路测试",
+      "code": "B1",
+      "detail": "AA回路已完成记录。",
+      "earned_score": 1,
+      "max_score": 1,
+      "status": "通过",
+      "step": 1,
+      "title": "AA回路记录完成"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B2",
+      "detail": "BB回路已完成记录。",
+      "earned_score": 1,
+      "max_score": 1,
+      "status": "通过",
+      "step": 1,
+      "title": "BB回路记录完成"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B3",
+      "detail": "CC回路已完成记录。",
+      "earned_score": 1,
+      "max_score": 1,
+      "status": "通过",
+      "step": 1,
+      "title": "CC回路记录完成"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B4",
+      "detail": "AB回路已完成记录。",
+      "earned_score": 1,
+      "max_score": 1,
+      "status": "通过",
+      "step": 1,
+      "title": "AB回路记录完成"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B5",
+      "detail": "AC回路已完成记录。",
+      "earned_score": 1,
+      "max_score": 1,
+      "status": "通过",
+      "step": 1,
+      "title": "AC回路记录完成"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B6",
+      "detail": "BC回路已完成记录。",
+      "earned_score": 1,
+      "max_score": 1,
+      "status": "通过",
+      "step": 1,
+      "title": "BC回路记录完成"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B7",
+      "detail": "第一步已形成完整闭环。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 1,
+      "title": "第一步结果提交规范"
+    },
+    {
+      "category": "第二步PT电压检查",
+      "code": "C1",
+      "detail": "PT1 已记录 3/3 项。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 2,
+      "title": "PT1电压记录完整"
+    },
+    {
+      "category": "第二步PT电压检查",
+      "code": "C2",
+      "detail": "PT2 已记录 3/3 项。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 2,
+      "title": "PT2电压记录完整"
+    },
+    {
+      "category": "第二步PT电压检查",
+      "code": "C3",
+      "detail": "PT3 已记录 3/3 项。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 2,
+      "title": "PT3电压记录完整"
+    },
+    {
+      "category": "第二步PT电压检查",
+      "code": "C4",
+      "detail": "第二步不承担本场景的关键异常识别。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 2,
+      "title": "第二步结果判读有效"
+    },
+    {
+      "category": "第三步PT相序检查",
+      "code": "D1",
+      "detail": "PT1 已记录 3/3 项。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 3,
+      "title": "PT1相序记录完整"
+    },
+    {
+      "category": "第三步PT相序检查",
+      "code": "D2",
+      "detail": "PT3 已记录 3/3 项。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 3,
+      "title": "PT3相序记录完整"
+    },
+    {
+      "category": "第三步PT相序检查",
+      "code": "D3",
+      "detail": "第三步记录顺序与接线选择规范。",
+      "earned_score": 2,
+      "max_score": 2,
+      "status": "通过",
+      "step": 3,
+      "title": "第三步记录顺序规范"
+    },
+    {
+      "category": "第三步PT相序检查",
+      "code": "D4",
+      "detail": "第三步不承担本场景的关键异常识别。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 3,
+      "title": "第三步能识别相序异常"
+    },
+    {
+      "category": "第四步压差考核",
+      "code": "E1",
+      "detail": "Gen1 已记录 9/9 组。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 4,
+      "title": "Gen1压差记录完整"
+    },
+    {
+      "category": "第四步压差考核",
+      "code": "E2",
+      "detail": "Gen2 已记录 9/9 组。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 4,
+      "title": "Gen2压差记录完整"
+    },
+    {
+      "category": "第四步压差考核",
+      "code": "E3",
+      "detail": "第四步操作顺序规范。",
+      "earned_score": 2,
+      "max_score": 2,
+      "status": "通过",
+      "step": 4,
+      "title": "第四步操作顺序规范"
+    },
+    {
+      "category": "第四步压差考核",
+      "code": "E4",
+      "detail": "正常场景无需形成故障判断。",
+      "earned_score": 6,
+      "max_score": 6,
+      "status": "通过",
+      "step": 4,
+      "title": "第四步形成有效判断"
+    }
+  ],
+  "penalties": []
+}

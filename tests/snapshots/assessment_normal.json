@@ -1,0 +1,391 @@
+{
+  "elapsed_seconds": 300,
+  "finished_at": "2026-04-09T12:00:00",
+  "max_score": 100,
+  "metrics": {
+    "actual_fault_scene_id": "-",
+    "blackbox_failed_confirms": 0,
+    "blackbox_swap_count": 0,
+    "blackboxes_opened": [],
+    "blocked_advances": 0,
+    "early_pt_blackbox_opened": 0,
+    "extra_deduction_total": 0,
+    "fault_detected_at_step": 0,
+    "fault_guess_correct": "-",
+    "fault_guess_scene_id": "-",
+    "fault_repaired_at": "",
+    "fault_selection_mode": "指定/正常",
+    "gate_blocks": 0,
+    "invalid_measurements": 0,
+    "measurements_recorded": 0,
+    "serious_misoperations": 0,
+    "step_entered_order": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "step_finalize_attempts": 1
+  },
+  "mode": "assessment",
+  "passed": true,
+  "penalties": [],
+  "scene_id": "",
+  "score_items": [
+    {
+      "category": "流程纪律",
+      "code": "A1",
+      "detail": "第二步进入顺序正确。",
+      "earned_score": 2,
+      "max_score": 2,
+      "status": "通过",
+      "step": 2,
+      "title": "顺序进入第二步"
+    },
+    {
+      "category": "流程纪律",
+      "code": "A2",
+      "detail": "第三步进入顺序正确。",
+      "earned_score": 2,
+      "max_score": 2,
+      "status": "通过",
+      "step": 3,
+      "title": "顺序进入第三步"
+    },
+    {
+      "category": "流程纪律",
+      "code": "A3",
+      "detail": "第四步进入顺序正确。",
+      "earned_score": 2,
+      "max_score": 2,
+      "status": "通过",
+      "step": 4,
+      "title": "顺序进入第四步"
+    },
+    {
+      "category": "流程纪律",
+      "code": "A4",
+      "detail": "未出现越级推进尝试。",
+      "earned_score": 5,
+      "max_score": 5,
+      "status": "通过",
+      "step": 0,
+      "title": "不越级推进"
+    },
+    {
+      "category": "流程纪律",
+      "code": "A5",
+      "detail": "未出现异常后强行完成步骤或闭环未完成仍继续推进。",
+      "earned_score": 5,
+      "max_score": 5,
+      "status": "通过",
+      "step": 4,
+      "title": "遵守异常与闭环门禁"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B1",
+      "detail": "AA回路已完成记录。",
+      "earned_score": 1,
+      "max_score": 1,
+      "status": "通过",
+      "step": 1,
+      "title": "AA回路记录完成"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B2",
+      "detail": "BB回路已完成记录。",
+      "earned_score": 1,
+      "max_score": 1,
+      "status": "通过",
+      "step": 1,
+      "title": "BB回路记录完成"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B3",
+      "detail": "CC回路已完成记录。",
+      "earned_score": 1,
+      "max_score": 1,
+      "status": "通过",
+      "step": 1,
+      "title": "CC回路记录完成"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B4",
+      "detail": "AB回路已完成记录。",
+      "earned_score": 1,
+      "max_score": 1,
+      "status": "通过",
+      "step": 1,
+      "title": "AB回路记录完成"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B5",
+      "detail": "AC回路已完成记录。",
+      "earned_score": 1,
+      "max_score": 1,
+      "status": "通过",
+      "step": 1,
+      "title": "AC回路记录完成"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B6",
+      "detail": "BC回路已完成记录。",
+      "earned_score": 1,
+      "max_score": 1,
+      "status": "通过",
+      "step": 1,
+      "title": "BC回路记录完成"
+    },
+    {
+      "category": "第一步回路测试",
+      "code": "B7",
+      "detail": "第一步已形成完整闭环。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 1,
+      "title": "第一步结果提交规范"
+    },
+    {
+      "category": "第二步PT电压检查",
+      "code": "C1",
+      "detail": "PT1 已记录 3/3 项。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 2,
+      "title": "PT1电压记录完整"
+    },
+    {
+      "category": "第二步PT电压检查",
+      "code": "C2",
+      "detail": "PT2 已记录 3/3 项。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 2,
+      "title": "PT2电压记录完整"
+    },
+    {
+      "category": "第二步PT电压检查",
+      "code": "C3",
+      "detail": "PT3 已记录 3/3 项。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 2,
+      "title": "PT3电压记录完整"
+    },
+    {
+      "category": "第二步PT电压检查",
+      "code": "C4",
+      "detail": "第二步不承担本场景的关键异常识别。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 2,
+      "title": "第二步结果判读有效"
+    },
+    {
+      "category": "第三步PT相序检查",
+      "code": "D1",
+      "detail": "PT1 已记录 3/3 项。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 3,
+      "title": "PT1相序记录完整"
+    },
+    {
+      "category": "第三步PT相序检查",
+      "code": "D2",
+      "detail": "PT3 已记录 3/3 项。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 3,
+      "title": "PT3相序记录完整"
+    },
+    {
+      "category": "第三步PT相序检查",
+      "code": "D3",
+      "detail": "第三步记录顺序与接线选择规范。",
+      "earned_score": 2,
+      "max_score": 2,
+      "status": "通过",
+      "step": 3,
+      "title": "第三步记录顺序规范"
+    },
+    {
+      "category": "第三步PT相序检查",
+      "code": "D4",
+      "detail": "第三步不承担本场景的关键异常识别。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 3,
+      "title": "第三步能识别相序异常"
+    },
+    {
+      "category": "第四步压差考核",
+      "code": "E1",
+      "detail": "Gen1 已记录 9/9 组。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 4,
+      "title": "Gen1压差记录完整"
+    },
+    {
+      "category": "第四步压差考核",
+      "code": "E2",
+      "detail": "Gen2 已记录 9/9 组。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 4,
+      "title": "Gen2压差记录完整"
+    },
+    {
+      "category": "第四步压差考核",
+      "code": "E3",
+      "detail": "第四步操作顺序规范。",
+      "earned_score": 2,
+      "max_score": 2,
+      "status": "通过",
+      "step": 4,
+      "title": "第四步操作顺序规范"
+    },
+    {
+      "category": "第四步压差考核",
+      "code": "E4",
+      "detail": "正常场景无需形成故障判断。",
+      "earned_score": 6,
+      "max_score": 6,
+      "status": "通过",
+      "step": 4,
+      "title": "第四步形成有效判断"
+    },
+    {
+      "category": "异常识别与故障定位",
+      "code": "F1",
+      "detail": "正常场景不要求故障识别。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 4,
+      "title": "第四步门禁前识别异常"
+    },
+    {
+      "category": "异常识别与故障定位",
+      "code": "F2",
+      "detail": "本场景不属于隐性故障，或已满足识别要求。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 4,
+      "title": "隐性故障识别能力"
+    },
+    {
+      "category": "异常识别与故障定位",
+      "code": "F3",
+      "detail": "本场景无黑盒定位要求。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 4,
+      "title": "定位到正确设备侧"
+    },
+    {
+      "category": "异常识别与故障定位",
+      "code": "F4",
+      "detail": "本场景无黑盒门禁定位要求。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 4,
+      "title": "定位到正确故障层级"
+    },
+    {
+      "category": "黑盒修复",
+      "code": "G1",
+      "detail": "本场景无黑盒范围控制要求。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 4,
+      "title": "黑盒开启范围合理"
+    },
+    {
+      "category": "黑盒修复",
+      "code": "G2",
+      "detail": "本场景不依赖黑盒修复闭环。",
+      "earned_score": 5,
+      "max_score": 5,
+      "status": "通过",
+      "step": 4,
+      "title": "最终修复结果正确"
+    },
+    {
+      "category": "黑盒修复",
+      "code": "G3",
+      "detail": "本场景无黑盒修复路径要求。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 4,
+      "title": "修复路径合理"
+    },
+    {
+      "category": "效率与规范性",
+      "code": "H1",
+      "detail": "总耗时控制优秀。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 0,
+      "title": "总耗时控制"
+    },
+    {
+      "category": "效率与规范性",
+      "code": "H2",
+      "detail": "无效测量与违规操作控制良好。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 0,
+      "title": "无效操作控制"
+    }
+  ],
+  "session_id": "ASM-SNAPSHOT-NORMAL",
+  "started_at": "2026-04-09T11:55:00",
+  "step_max_scores": {
+    "anomaly_localization": 14,
+    "blackbox_repair": 12,
+    "efficiency": 8,
+    "flow_discipline": 16,
+    "loop_test": 10,
+    "pt_exam": 16,
+    "pt_phase_check": 12,
+    "pt_voltage_check": 12
+  },
+  "step_scores": {
+    "anomaly_localization": 14,
+    "blackbox_repair": 12,
+    "efficiency": 8,
+    "flow_discipline": 16,
+    "loop_test": 10,
+    "pt_exam": 16,
+    "pt_phase_check": 12,
+    "pt_voltage_check": 12
+  },
+  "summary": "通过：流程规范、判断准确，整体表现优秀。",
+  "total_score": 100,
+  "veto_reason": null
+}

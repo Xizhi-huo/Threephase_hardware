@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "category": "流程纪律",
+      "code": "A1",
+      "detail": "第二步进入顺序正确。",
+      "earned_score": 2,
+      "max_score": 2,
+      "status": "通过",
+      "step": 2,
+      "title": "顺序进入第二步"
+    },
+    {
+      "category": "流程纪律",
+      "code": "A2",
+      "detail": "第三步进入顺序正确。",
+      "earned_score": 2,
+      "max_score": 2,
+      "status": "通过",
+      "step": 3,
+      "title": "顺序进入第三步"
+    },
+    {
+      "category": "流程纪律",
+      "code": "A3",
+      "detail": "第四步进入顺序正确。",
+      "earned_score": 2,
+      "max_score": 2,
+      "status": "通过",
+      "step": 4,
+      "title": "顺序进入第四步"
+    },
+    {
+      "category": "流程纪律",
+      "code": "A4",
+      "detail": "未出现越级推进尝试。",
+      "earned_score": 5,
+      "max_score": 5,
+      "status": "通过",
+      "step": 0,
+      "title": "不越级推进"
+    },
+    {
+      "category": "流程纪律",
+      "code": "A5",
+      "detail": "未出现异常后强行完成步骤或闭环未完成仍继续推进。",
+      "earned_score": 5,
+      "max_score": 5,
+      "status": "通过",
+      "step": 4,
+      "title": "遵守异常与闭环门禁"
+    }
+  ],
+  "penalties": []
+}

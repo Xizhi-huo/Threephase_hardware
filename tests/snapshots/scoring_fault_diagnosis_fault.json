@@ -1,0 +1,45 @@
+{
+  "items": [
+    {
+      "category": "异常识别与故障定位",
+      "code": "F1",
+      "detail": "已在第四步门禁前识别到异常。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 4,
+      "title": "第四步门禁前识别异常"
+    },
+    {
+      "category": "异常识别与故障定位",
+      "code": "F2",
+      "detail": "本场景不属于隐性故障，或已满足识别要求。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 4,
+      "title": "隐性故障识别能力"
+    },
+    {
+      "category": "异常识别与故障定位",
+      "code": "F3",
+      "detail": "已命中正确设备侧。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 4,
+      "title": "定位到正确设备侧"
+    },
+    {
+      "category": "异常识别与故障定位",
+      "code": "F4",
+      "detail": "已命中正确故障层级。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 4,
+      "title": "定位到正确故障层级"
+    }
+  ],
+  "penalties": []
+}

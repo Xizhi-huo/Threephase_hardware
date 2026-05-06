@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "category": "黑盒修复",
+      "code": "G1",
+      "detail": "本场景无黑盒范围控制要求。",
+      "earned_score": 3,
+      "max_score": 3,
+      "status": "通过",
+      "step": 4,
+      "title": "黑盒开启范围合理"
+    },
+    {
+      "category": "黑盒修复",
+      "code": "G2",
+      "detail": "本场景不依赖黑盒修复闭环。",
+      "earned_score": 5,
+      "max_score": 5,
+      "status": "通过",
+      "step": 4,
+      "title": "最终修复结果正确"
+    },
+    {
+      "category": "黑盒修复",
+      "code": "G3",
+      "detail": "本场景无黑盒修复路径要求。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 4,
+      "title": "修复路径合理"
+    },
+    {
+      "category": "效率与规范性",
+      "code": "H1",
+      "detail": "总耗时控制优秀。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 0,
+      "title": "总耗时控制"
+    },
+    {
+      "category": "效率与规范性",
+      "code": "H2",
+      "detail": "无效测量与违规操作控制良好。",
+      "earned_score": 4,
+      "max_score": 4,
+      "status": "通过",
+      "step": 0,
+      "title": "无效操作控制"
+    }
+  ],
+  "penalties": []
+}
