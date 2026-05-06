@@ -16,7 +16,12 @@ QTimer                每 33ms 驱动主循环
 """
 
 import os
-os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib_threephase")
+import tempfile
+
+os.environ.setdefault(
+    "MPLCONFIGDIR",
+    os.path.join(tempfile.gettempdir(), "matplotlib_threephase"),
+)
 
 import sys
 import random
