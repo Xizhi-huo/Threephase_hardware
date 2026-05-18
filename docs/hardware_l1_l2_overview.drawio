@@ -1,0 +1,112 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.3.7 Chrome/112.0.5615.204 Electron/24.5.0 Safari/537.36">
+  <diagram id="hardware-l1-l2-overview" name="L1-L2 Overview">
+    <mxGraphModel dx="1276" dy="696" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1280" pageHeight="819" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#0f172a;" value="三相电并网仿真教学系统：L1/L2 硬件替代总览（V1/V2 重点）" vertex="1">
+          <mxGeometry height="40" width="1060" x="110" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="pc-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#eef6ff;strokeColor=#2563eb;fontSize=16;fontStyle=1;fontColor=#0f172a;verticalAlign=top;spacingTop=12;" value="上位机软件层&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="330" width="300" x="40" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="pc-flow" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#93c5fd;fontSize=13;fontColor=#1e3a8a;" value="五步教学流程&lt;br&gt;训练 / 考核 / 维护模式&lt;br&gt;流程提示与步骤门禁" vertex="1">
+          <mxGeometry height="70" width="250" x="65" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="pc-manual" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#93c5fd;fontSize=13;fontColor=#1e3a8a;" value="手动录入 UI&lt;br&gt;origin=&quot;manual&quot;&lt;br&gt;保存读数 / 单位 / 端子组合 / 时间" vertex="1">
+          <mxGeometry height="78" width="250" x="65" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="pc-record" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#93c5fd;fontSize=13;fontColor=#1e3a8a;" value="评分、日志、报告、回放&lt;br&gt;MeasurementRecord&lt;br&gt;AssessmentEvent v2" vertex="1">
+          <mxGeometry height="75" width="250" x="65" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="adapter-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f8fafc;strokeColor=#64748b;fontSize=16;fontStyle=1;fontColor=#0f172a;verticalAlign=top;spacingTop=12;" value="统一适配层" vertex="1">
+          <mxGeometry height="330" width="210" x="380" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="adapter" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#94a3b8;fontSize=13;fontColor=#334155;" value="PlantAdapter&lt;br&gt;屏蔽串口 / USB / 网络 / 开发板差异" vertex="1">
+          <mxGeometry height="70" width="160" x="405" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="snapshot" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#94a3b8;fontSize=13;fontColor=#334155;" value="PlantSnapshot&lt;br&gt;实体状态、测量快照、闭锁原因" vertex="1">
+          <mxGeometry height="65" width="160" x="405" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="command" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#94a3b8;fontSize=13;fontColor=#334155;" value="PlantCommand&lt;br&gt;模式、输出请求、故障矩阵请求" vertex="1">
+          <mxGeometry height="65" width="160" x="405" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="hw-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f0fdf4;strokeColor=#16a34a;fontSize=16;fontStyle=1;fontColor=#14532d;verticalAlign=top;spacingTop=12;" value="硬件实训台 L1/L2" vertex="1">
+          <mxGeometry height="330" width="420" x="630" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#86efac;fontSize=13;fontColor=#166534;align=left;spacingLeft=12;" value="L1 / V1：实体操作硬件化&lt;br&gt;按钮、旋钮、合分闸、断路器位置、接地方式、急停、状态灯&lt;br&gt;目标：鼠标操作替换为实体动作，状态可回传" vertex="1">
+          <mxGeometry height="88" width="370" x="655" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#86efac;fontSize=13;fontColor=#166534;align=left;spacingLeft=12;" value="L2 / V1-V2：真实测量硬件化&lt;br&gt;低压安全端子、LOOP/PT1/PT2/PT3 标注、普通万用表、相序仪&lt;br&gt;V1：学生按提示实测并手动录入；V2：在此基础上选择性加入自动采集" vertex="1">
+          <mxGeometry height="95" width="370" x="655" y="238" as="geometry" />
+        </mxCell>
+        <mxCell id="safety" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fef2f2;strokeColor=#ef4444;fontSize=13;fontStyle=1;fontColor=#991b1b;" value="安全底线：低压隔离 / 限流熔断 / 急停独立 / 输出默认断开 / 通信超时失效安全" vertex="1">
+          <mxGeometry height="42" width="370" x="655" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="mcu-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff7ed;strokeColor=#f97316;fontSize=16;fontStyle=1;fontColor=#7c2d12;verticalAlign=top;spacingTop=12;" value="下位机与低压信号层" vertex="1">
+          <mxGeometry height="330" width="150" x="1090" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="mcu" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#fdba74;fontSize=12;fontColor=#7c2d12;" value="MCU / IO 板&lt;br&gt;DI / DO / ADC / 继电器驱动" vertex="1">
+          <mxGeometry height="70" width="110" x="1110" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="signals" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#fdba74;fontSize=12;fontColor=#7c2d12;" value="低压等效信号&lt;br&gt;PT 低压源&lt;br&gt;端子压差&lt;br&gt;相序现象" vertex="1">
+          <mxGeometry height="86" width="110" x="1110" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="future" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#fdba74;fontSize=12;fontColor=#7c2d12;" value="后续增强&lt;br&gt;自动采集&lt;br&gt;表笔识别&lt;br&gt;状态码上传" vertex="1">
+          <mxGeometry height="68" width="110" x="1110" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="meter" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fefce8;strokeColor=#eab308;fontSize=13;fontColor=#713f12;" value="普通万用表 / 相序仪&lt;br&gt;学生真实接线与读数" vertex="1">
+          <mxGeometry height="62" width="180" x="655" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="manual-loop" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#eef6ff;strokeColor=#2563eb;fontSize=13;fontStyle=1;fontColor=#1e3a8a;" value="V1 闭环：实测读数 → 手动录入 → service 判定 → 评分日志" vertex="1">
+          <mxGeometry height="62" width="320" x="260" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="auto-loop" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;dashed=1;fillColor=#f8fafc;strokeColor=#64748b;fontSize=13;fontColor=#334155;" value="V2 增强：选择性自动采集&lt;br&gt;优先 PT 线电压 / PT 二次端子压差；不替代 V1 手动录入闭环" vertex="1">
+          <mxGeometry height="62" width="290" x="880" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="phase-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontStyle=1;fontColor=#0f172a;" value="阶段边界（当前只讨论总览，不展开开发板原理图和端子排细节）" vertex="1">
+          <mxGeometry height="30" width="800" x="40" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="v1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dcfce7;strokeColor=#16a34a;fontSize=13;fontColor=#14532d;" value="V1：操作硬件化 + 手动测量闭环&lt;br&gt;实体操作面板、状态反馈、安全端子、普通万用表/相序仪、上位机手动录入" vertex="1">
+          <mxGeometry height="82" width="350" x="40" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="v2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fef9c3;strokeColor=#eab308;fontSize=13;fontColor=#713f12;" value="V2：测量硬件化增强&lt;br&gt;在 V1 手动测量闭环基础上，选择性加入自动采集；优先 PT 线电压和 PT 二次端子压差，通断/相序/表笔识别为可选增强" vertex="1">
+          <mxGeometry height="82" width="350" x="430" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="later" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f3f4f6;strokeColor=#9ca3af;fontSize=13;fontColor=#374151;" value="后续 L3/L4：暂不在本图展开&lt;br&gt;故障闭锁、sync_ok、ΔU/Δf/Δφ、波形采样、事件录波、保护逻辑" vertex="1">
+          <mxGeometry height="82" width="380" x="820" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-pc-adapter" edge="1" parent="1" source="pc-container" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2563eb;fontSize=12;fontColor=#2563eb;" target="adapter-container" value="语义接口">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-adapter-hw" edge="1" parent="1" source="adapter-container" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;fontSize=12;fontColor=#475569;" target="hw-container" value="命令 / 快照">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-hw-mcu" edge="1" parent="1" source="hw-container" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#16a34a;fontSize=12;fontColor=#166534;" target="mcu-container" value="IO / 低压信号">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-l2-meter" edge="1" parent="1" source="l2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#ca8a04;fontSize=12;fontColor=#713f12;" target="meter" value="学生实测">
+          <mxGeometry relative="1" x="0.7696" y="35" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-meter-manual" edge="1" parent="1" source="meter" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2563eb;fontSize=12;fontColor=#1e3a8a;" target="manual-loop" value="读数录入">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-manual-ui" edge="1" parent="1" source="manual-loop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2563eb;fontSize=12;fontColor=#1e3a8a;" target="pc-manual" value="写入 MeasurementRecord">
+          <mxGeometry relative="1" x="-0.1786" y="56" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-auto" edge="1" parent="1" source="future" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#64748b;fontSize=12;fontColor=#475569;" target="auto-loop" value="origin=&quot;hardware&quot;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-auto-adapter" edge="1" parent="1" source="auto-loop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#64748b;fontSize=12;fontColor=#475569;" target="adapter" value="自动上传">
+          <mxGeometry relative="1" x="0.0059" y="14" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
