@@ -37,7 +37,7 @@
         <mxCell id="l1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#86efac;fontSize=13;fontColor=#166534;align=left;spacingLeft=12;" value="L1 / V1：实体操作硬件化&lt;br&gt;按钮、旋钮、合分闸、断路器位置、接地方式、急停、状态灯&lt;br&gt;目标：鼠标操作替换为实体动作，状态可回传" vertex="1">
           <mxGeometry height="88" width="370" x="655" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="l2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#86efac;fontSize=13;fontColor=#166534;align=left;spacingLeft=12;" value="L2 / V1-V2：真实测量硬件化&lt;br&gt;低压安全端子、LOOP/PT1/PT2/PT3 标注、普通万用表、相序仪&lt;br&gt;V1：学生按提示实测并手动录入；V2：在此基础上选择性加入自动采集" vertex="1">
+        <mxCell id="l2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#86efac;fontSize=13;fontColor=#166534;align=left;spacingLeft=12;" value="L2 / V1-V2：真实测量硬件化&lt;br&gt;低压安全端子、LOOP/PT1/PT2/PT3 标注、普通万用表、相序仪&lt;br&gt;V1/V2 近期重点：学生按提示实测并手动录入；自动采集放入后续扩展" vertex="1">
           <mxGeometry height="95" width="370" x="655" y="238" as="geometry" />
         </mxCell>
         <mxCell id="safety" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fef2f2;strokeColor=#ef4444;fontSize=13;fontStyle=1;fontColor=#991b1b;" value="安全底线：低压隔离 / 限流熔断 / 急停独立 / 输出默认断开 / 通信超时失效安全" vertex="1">
@@ -61,7 +61,7 @@
         <mxCell id="manual-loop" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#eef6ff;strokeColor=#2563eb;fontSize=13;fontStyle=1;fontColor=#1e3a8a;" value="V1 闭环：实测读数 → 手动录入 → service 判定 → 评分日志" vertex="1">
           <mxGeometry height="62" width="320" x="260" y="455" as="geometry" />
         </mxCell>
-        <mxCell id="auto-loop" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;dashed=1;fillColor=#f8fafc;strokeColor=#64748b;fontSize=13;fontColor=#334155;" value="V2 增强：选择性自动采集&lt;br&gt;优先 PT 线电压 / PT 二次端子压差；不替代 V1 手动录入闭环" vertex="1">
+        <mxCell id="auto-loop" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;dashed=1;fillColor=#f8fafc;strokeColor=#64748b;fontSize=13;fontColor=#334155;" value="后续扩展：自动采集&lt;br&gt;用于提升便利性和考核严谨性；不是 V1/V2 硬件化闭环的前置条件" vertex="1">
           <mxGeometry height="62" width="290" x="880" y="455" as="geometry" />
         </mxCell>
         <mxCell id="phase-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontStyle=1;fontColor=#0f172a;" value="阶段边界（当前只讨论总览，不展开开发板原理图和端子排细节）" vertex="1">
@@ -70,7 +70,7 @@
         <mxCell id="v1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#dcfce7;strokeColor=#16a34a;fontSize=13;fontColor=#14532d;" value="V1：操作硬件化 + 手动测量闭环&lt;br&gt;实体操作面板、状态反馈、安全端子、普通万用表/相序仪、上位机手动录入" vertex="1">
           <mxGeometry height="82" width="350" x="40" y="600" as="geometry" />
         </mxCell>
-        <mxCell id="v2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fef9c3;strokeColor=#eab308;fontSize=13;fontColor=#713f12;" value="V2：测量硬件化增强&lt;br&gt;在 V1 手动测量闭环基础上，选择性加入自动采集；优先 PT 线电压和 PT 二次端子压差，通断/相序/表笔识别为可选增强" vertex="1">
+        <mxCell id="v2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fef9c3;strokeColor=#eab308;fontSize=13;fontColor=#713f12;" value="V2：测量硬件化完善&lt;br&gt;继续完善低压端子、测量指引、手动录入口径和故障现象可测性；自动采集不作为 V2 必选项，转入后续扩展" vertex="1">
           <mxGeometry height="82" width="350" x="430" y="600" as="geometry" />
         </mxCell>
         <mxCell id="later" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f3f4f6;strokeColor=#9ca3af;fontSize=13;fontColor=#374151;" value="后续 L3/L4：暂不在本图展开&lt;br&gt;故障闭锁、sync_ok、ΔU/Δf/Δφ、波形采样、事件录波、保护逻辑" vertex="1">
