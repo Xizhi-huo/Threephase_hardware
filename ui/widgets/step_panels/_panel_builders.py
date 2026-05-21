@@ -197,7 +197,8 @@ def add_blackbox_section(lay, *, owner, api, show_blackbox_dialog):
     allow_blackbox = api.can_inspect_blackbox()
     for entries in (
         (("G1 机端接线", "G1", "#92400e"), ("G2 机端接线", "G2", "#92400e")),
-        (("PT1 接线盒", "PT1", "#1e40af"), ("PT3 接线盒", "PT3", "#1e40af")),
+        (("PT1 接线盒", "PT1", "#1e40af"), ("PT2 接线盒", "PT2", "#0f766e")),
+        (("PT3 接线盒", "PT3", "#1e40af"),),
     ):
         row = make_inline_row()
         hlay = QtWidgets.QHBoxLayout(row)

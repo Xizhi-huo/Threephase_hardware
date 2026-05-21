@@ -42,9 +42,11 @@ class ControllerStub:
         self.g2_blackbox_order = ["A", "B", "C"]
         self.pt1_pri_blackbox_order = ["A", "B", "C"]
         self.pt1_sec_blackbox_order = ["A", "B", "C"]
+        self.pt2_sec_blackbox_order = ["A", "B", "C"]
         self.phase_resolver = PhaseOrderResolver(
             sim_state=self.sim_state,
             get_pt_phase_orders=lambda: self.pt_phase_orders,
+            get_g1_blackbox_order=lambda: self.g1_blackbox_order,
             get_g2_blackbox_order=lambda: self.g2_blackbox_order,
         )
         self.loop_svc = self

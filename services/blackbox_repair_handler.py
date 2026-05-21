@@ -39,8 +39,11 @@ class BlackboxRepairHandler:
         set_pt1_pri_blackbox_order: Callable[[list], None],
         get_pt1_sec_blackbox_order: Callable[[], list],
         set_pt1_sec_blackbox_order: Callable[[list], None],
+        get_pt2_sec_blackbox_order: Callable[[], list],
+        set_pt2_sec_blackbox_order: Callable[[list], None],
         apply_g2_blackbox_to_pt3: Callable[[], None],
         apply_pt1_blackbox_to_pt_phases: Callable[[list], None],
+        apply_pt2_blackbox_to_pt2: Callable[[], None],
     ):
         self._sim_state = sim_state
         self._flow_mgr = flow_mgr
@@ -55,8 +58,11 @@ class BlackboxRepairHandler:
         self._set_pt1_pri_blackbox_order = set_pt1_pri_blackbox_order
         self._get_pt1_sec_blackbox_order = get_pt1_sec_blackbox_order
         self._set_pt1_sec_blackbox_order = set_pt1_sec_blackbox_order
+        self._get_pt2_sec_blackbox_order = get_pt2_sec_blackbox_order
+        self._set_pt2_sec_blackbox_order = set_pt2_sec_blackbox_order
         self._apply_g2_blackbox_to_pt3 = apply_g2_blackbox_to_pt3
         self._apply_pt1_blackbox_to_pt_phases = apply_pt1_blackbox_to_pt_phases
+        self._apply_pt2_blackbox_to_pt2 = apply_pt2_blackbox_to_pt2
 
     def get_blackbox_runtime_state(self, target: str) -> dict:
         fault_config = self._sim_state.fault_config
@@ -95,6 +101,20 @@ class BlackboxRepairHandler:
                 'pri_order': pri_order,
                 'sec_order': sec_order,
                 'repair_target': 'PT1' if self._flow_mgr.can_repair_in_blackbox() else None,
+            }
+        if target == 'PT2':
+            if fault_active:
+                pri_input_order = list(self._get_g1_blackbox_order())
+                sec_order = list(self._get_pt2_sec_blackbox_order())
+            else:
+                pri_input_order = ['A', 'B', 'C']
+                sec_order = ['A', 'B', 'C']
+            return {
+                'fault_active': fault_active,
+                'pri_input_order': pri_input_order,
+                'pri_order': list(_NORMAL_ORDER),
+                'sec_order': sec_order,
+                'repair_target': 'PT2' if self._flow_mgr.can_repair_in_blackbox() else None,
             }
         if target == 'PT3':
             pri_input_order = ['A', 'B', 'C']
@@ -187,6 +207,20 @@ class BlackboxRepairHandler:
                 list(new_pri_order) == ['A', 'B', 'C']
                 and list(new_sec_order) == ['A', 'B', 'C']
             )
+        elif target == 'PT2':
+            if initial_sec_order is not None and list(new_sec_order) != list(initial_sec_order):
+                self._append_assessment_event(
+                    AssessmentEventType.BLACKBOX_SWAP,
+                    step=step,
+                    target='PT2',
+                    layer='secondary',
+                    from_order=list(initial_sec_order),
+                    to_order=list(new_sec_order),
+                )
+                touched_layers.append('secondary')
+            self._set_pt2_sec_blackbox_order(list(new_sec_order))
+            self.sync_pt2_blackbox_to_phase_orders()
+            component_correct = (list(new_sec_order) == ['A', 'B', 'C'])
         elif target == 'PT3':
             if initial_sec_order is not None and list(new_sec_order) != list(initial_sec_order):
                 self._append_assessment_event(
@@ -301,8 +335,12 @@ class BlackboxRepairHandler:
         return [primary_actual[labels.index(sec_label)] for sec_label in sec_order]
 
     def sync_pt1_blackbox_to_phase_orders(self) -> None:
-        """派生同步: PT2 ← g1_blackbox_order；PT1 ← PT1 黑盒净相序。"""
+        """派生同步: PT2 ← 母排PT二次侧净相序；PT1 ← PT1 黑盒净相序。"""
         self._apply_pt1_blackbox_to_pt_phases(self._compute_pt1_net_order())
+
+    def sync_pt2_blackbox_to_phase_orders(self) -> None:
+        """派生同步: PT2 ← g1_blackbox_order × PT2 二次侧黑盒。"""
+        self._apply_pt2_blackbox_to_pt2()
 
     def sync_g2_blackbox_to_phase_orders(self) -> None:
         """派生同步: PT3 ← g2_blackbox_order。"""

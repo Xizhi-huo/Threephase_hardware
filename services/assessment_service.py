@@ -408,9 +408,10 @@ class AssessmentService:
         if (params.get("pt1_pri_blackbox_order") is not None
                 or params.get("p1_pri_blackbox_order") is not None):
             targets.append("PT1.primary")
-        if (params.get("pt1_sec_blackbox_order") is not None
-                or params.get("pt2_sec_blackbox_order") is not None):
+        if params.get("pt1_sec_blackbox_order") is not None:
             targets.append("PT1.secondary")
+        if params.get("pt2_sec_blackbox_order") is not None:
+            targets.append("PT2.secondary")
         if params.get("g2_blackbox_order") is not None:
             targets.append("G2.terminal")
         return targets

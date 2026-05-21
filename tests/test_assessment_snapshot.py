@@ -73,3 +73,11 @@ def test_assessment_snapshot_fault_random():
         SNAPSHOT_DIR / "assessment_fault_random.json",
         _result_payload(result),
     )
+
+
+def test_pt2_secondary_fault_expects_pt2_blackbox_target():
+    targets = AssessmentService._expected_blackbox_targets(
+        {"params": {"pt2_sec_blackbox_order": ["A", "C", "B"]}}
+    )
+
+    assert targets == ["PT2.secondary"]

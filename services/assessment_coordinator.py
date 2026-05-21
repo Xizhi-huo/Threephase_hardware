@@ -45,6 +45,7 @@ class AssessmentCoordinator:
         get_g2_blackbox_order: Callable[[], list],
         get_pt1_pri_blackbox_order: Callable[[], list],
         get_pt1_sec_blackbox_order: Callable[[], list],
+        get_pt2_sec_blackbox_order: Callable[[], list],
         is_loop_test_complete: Callable[[], bool],
         is_pt_voltage_check_complete: Callable[[], bool],
         is_pt_phase_check_complete: Callable[[], bool],
@@ -65,6 +66,7 @@ class AssessmentCoordinator:
         self._get_g2_blackbox_order = get_g2_blackbox_order
         self._get_pt1_pri_blackbox_order = get_pt1_pri_blackbox_order
         self._get_pt1_sec_blackbox_order = get_pt1_sec_blackbox_order
+        self._get_pt2_sec_blackbox_order = get_pt2_sec_blackbox_order
         self._is_loop_test_complete = is_loop_test_complete
         self._is_pt_voltage_check_complete = is_pt_voltage_check_complete
         self._is_pt_phase_check_complete = is_pt_phase_check_complete
@@ -192,6 +194,7 @@ class AssessmentCoordinator:
                 'g2': list(self._get_g2_blackbox_order()),
                 'pt1_primary': list(self._get_pt1_pri_blackbox_order()),
                 'pt1_secondary': list(self._get_pt1_sec_blackbox_order()),
+                'pt2_secondary': list(self._get_pt2_sec_blackbox_order()),
             },
         }
 

@@ -9,10 +9,12 @@ class PhaseOrderResolver:
         *,
         sim_state,
         get_pt_phase_orders: Callable[[], dict[str, list[str]]],
+        get_g1_blackbox_order: Callable[[], list[str]],
         get_g2_blackbox_order: Callable[[], list[str]],
     ):
         self._sim_state = sim_state
         self._get_pt_phase_orders = get_pt_phase_orders
+        self._get_g1_blackbox_order = get_g1_blackbox_order
         self._get_g2_blackbox_order = get_g2_blackbox_order
 
     def resolve_pt_node_plot_key(self, node_name) -> str | None:
@@ -59,7 +61,7 @@ class PhaseOrderResolver:
         _, gen_name, terminal = node_name.split('_', 2)
         if gen_name == 'G1':
             idx = ('A', 'B', 'C').index(terminal)
-            return self._get_pt_phase_orders()['PT2'][idx]
+            return self._get_g1_blackbox_order()[idx]
         if gen_name == 'G2':
             idx = ('A', 'B', 'C').index(terminal)
             phase = self._get_g2_blackbox_order()[idx]

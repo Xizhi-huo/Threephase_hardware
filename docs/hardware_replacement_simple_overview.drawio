@@ -1,0 +1,90 @@
+<mxfile host="Electron" agent="draw.io" version="21.3.7">
+  <diagram id="hardware-simple-overview" name="Simple Overview">
+    <mxGraphModel dx="1434" dy="821" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="980" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="三相电力实训系统硬件替代：简单讲解版" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontStyle=1;fontColor=#0f172a;" vertex="1" parent="1">
+          <mxGeometry x="250" y="25" width="1000" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="V1 最小闭环：软件选择场景 → MCU 控制继电器/端子矩阵 → 学生用万用表测真实端子 → 手动录入软件" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="220" y="75" width="1060" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pc-box" value="上位机软件层" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#eef6ff;strokeColor=#2563eb;fontSize=20;fontStyle=1;fontColor=#1e3a8a;verticalAlign=top;spacingTop=16;" vertex="1" parent="1">
+          <mxGeometry x="55" y="140" width="300" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="pc-input" value="输入&lt;br&gt;&lt;br&gt;教师选择故障场景&lt;br&gt;学生手动录入万用表读数&lt;br&gt;训练/考核流程操作" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#93c5fd;fontSize=14;fontColor=#1e3a8a;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="195" width="250" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="pc-process" value="处理&lt;br&gt;&lt;br&gt;流程引导&lt;br&gt;步骤门禁&lt;br&gt;测量记录&lt;br&gt;考核评分" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#93c5fd;fontSize=14;fontColor=#1e3a8a;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="320" width="250" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="pc-output" value="输出&lt;br&gt;&lt;br&gt;场景切换指令&lt;br&gt;状态显示&lt;br&gt;测试结果/报告" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#93c5fd;fontSize=14;fontColor=#1e3a8a;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="460" width="250" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="adapter-box" value="统一适配层" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f8fafc;strokeColor=#64748b;fontSize=20;fontStyle=1;fontColor=#334155;verticalAlign=top;spacingTop=16;" vertex="1" parent="1">
+          <mxGeometry x="430" y="140" width="280" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="adapter-input" value="输入&lt;br&gt;&lt;br&gt;来自软件的场景指令&lt;br&gt;来自硬件的端子/继电器状态" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#cbd5e1;fontSize=14;fontColor=#334155;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="455" y="195" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="adapter-process" value="转换&lt;br&gt;&lt;br&gt;USB / 串口通信&lt;br&gt;场景编号 → MCU 指令&lt;br&gt;硬件状态 → 软件状态" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#cbd5e1;fontSize=14;fontColor=#334155;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="455" y="315" width="230" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="adapter-output" value="输出&lt;br&gt;&lt;br&gt;下发给 MCU 的继电器控制&lt;br&gt;上传给软件的统一状态" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#cbd5e1;fontSize=14;fontColor=#334155;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="455" y="460" width="230" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bench-box" value="硬件实训台：V1 最小版" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f0fdf4;strokeColor=#16a34a;fontSize=20;fontStyle=1;fontColor=#166534;verticalAlign=top;spacingTop=16;" vertex="1" parent="1">
+          <mxGeometry x="785" y="140" width="330" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="bench-l1" value="可选 L1：实体操作&lt;br&gt;&lt;br&gt;V1 可先不做按钮/指示灯&lt;br&gt;断路器可先由软件状态或继电器模拟&lt;br&gt;&lt;br&gt;需要时再增加实体开关" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#86efac;fontSize=14;fontColor=#166534;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="810" y="195" width="280" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="bench-l2" value="必做 L2：真实测量端子&lt;br&gt;&lt;br&gt;端子排 + 继电器/开关矩阵&lt;br&gt;万用表测通/断、低压电压&lt;br&gt;学生把读数手动录入软件&lt;br&gt;&lt;br&gt;这部分构成 V1 交付核心" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#86efac;fontSize=14;fontColor=#166534;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="810" y="350" width="280" height="165" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mcu-box" value="下位机与低压信号层" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff7ed;strokeColor=#f97316;fontSize=20;fontStyle=1;fontColor=#9a3412;verticalAlign=top;spacingTop=16;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="140" width="260" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="mcu-input" value="输入&lt;br&gt;&lt;br&gt;软件下发的场景编号&lt;br&gt;继电器/端子状态反馈&lt;br&gt;可选开关量输入" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#fdba74;fontSize=14;fontColor=#9a3412;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="1215" y="195" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="mcu-process" value="处理&lt;br&gt;&lt;br&gt;MCU / IO 板控制&lt;br&gt;继电器/端子矩阵切换&lt;br&gt;低压信号接入&lt;br&gt;基本状态判断" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#fdba74;fontSize=14;fontColor=#9a3412;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="1215" y="315" width="210" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="mcu-output" value="输出&lt;br&gt;&lt;br&gt;继电器控制信号&lt;br&gt;端子通断/电压状态&lt;br&gt;回传给软件的状态数据" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ffffff;strokeColor=#fdba74;fontSize=14;fontColor=#9a3412;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="1215" y="460" width="210" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="arrow-pc-adapter" value="场景指令 / 手动录入数据" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#334155;strokeWidth=2;endArrow=block;endFill=1;fontSize=13;fontColor=#334155;" edge="1" parent="1" source="pc-box" target="adapter-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-adapter-bench" value="USB / 串口 转接" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#334155;strokeWidth=2;endArrow=block;endFill=1;fontSize=13;fontColor=#334155;" edge="1" parent="1" source="adapter-box" target="bench-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-bench-mcu" value="继电器切换 / 低压端子信号" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#334155;strokeWidth=2;endArrow=block;endFill=1;fontSize=13;fontColor=#334155;" edge="1" parent="1" source="bench-box" target="mcu-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="return-line" value="状态回传：下位机 → 适配层 → 上位机显示/评分" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fefce8;strokeColor=#eab308;fontSize=16;fontStyle=1;fontColor=#854d0e;align=center;" vertex="1" parent="1">
+          <mxGeometry x="250" y="625" width="1000" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="phase-meter-extension" value="后续扩展：真实相序仪&lt;br&gt;需要额外真实三相交流源；MCU / 开发板的 3.3V、5V 或 24V 只能做控制与低压测量，不能直接让真实相序仪工作。" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#fff1f2;strokeColor=#fb7185;fontSize=15;fontStyle=1;fontColor=#9f1239;align=center;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="290" y="695" width="920" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="principle-1" value="原则 1：真实高压不进入软件和开发板，只处理隔离后的低压安全信号。" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f8fafc;strokeColor=#94a3b8;fontSize=14;fontColor=#334155;align=center;" vertex="1" parent="1">
+          <mxGeometry x="170" y="810" width="360" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="principle-2" value="原则 2：V1 只保留真实端子 + 低压测量 + 手动录入，先做最小可交付版本。" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f8fafc;strokeColor=#94a3b8;fontSize=14;fontColor=#334155;align=center;" vertex="1" parent="1">
+          <mxGeometry x="570" y="810" width="360" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="principle-3" value="原则 3：真实相序仪与自动采集放后续扩展，不影响 V1 手动实训闭环。" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f8fafc;strokeColor=#94a3b8;fontSize=14;fontColor=#334155;align=center;" vertex="1" parent="1">
+          <mxGeometry x="970" y="810" width="360" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -95,6 +95,27 @@ def show_blackbox_dialog(owner, *, api, step, target):
         initial_sec_order = widget.get_sec_order()
         vlay.addWidget(widget, alignment=QtCore.Qt.AlignHCenter)
         repair_target = blackbox_state["repair_target"]
+    elif target == "PT2":
+        dlg.setWindowTitle("PT2 接线盒检查 [二次侧可交互修复]" if allow_repair else "PT2 接线盒检查 [只读]")
+        pri_input_order = blackbox_state["pri_input_order"]
+        pri_order = blackbox_state["pri_order"]
+        sec_order = blackbox_state["sec_order"]
+        sub = QtWidgets.QLabel(
+            "上: PT2二次侧输出→测量端口 [可互换]  |  下: 母排一次侧输入 [只读]"
+            if allow_repair else "上: PT2二次侧输出→测量端口 [只读]  |  下: 母排一次侧输入 [只读]"
+        )
+        set_props(sub, dialogCaption=True)
+        vlay.addWidget(sub)
+        widget = PTWiringWidget(
+            pri_order,
+            sec_order,
+            pri_input_order=pri_input_order,
+            interactive_sec=allow_repair,
+        )
+        initial_pri_order = widget.get_pri_order()
+        initial_sec_order = widget.get_sec_order()
+        vlay.addWidget(widget, alignment=QtCore.Qt.AlignHCenter)
+        repair_target = blackbox_state["repair_target"]
     elif target == "PT3":
         dlg.setWindowTitle("PT3 接线盒检查 [二次侧可交互修复]" if allow_repair else "PT3 接线盒检查 [只读]")
         pri_input_order = blackbox_state["pri_input_order"]
@@ -139,11 +160,11 @@ def show_blackbox_dialog(owner, *, api, step, target):
     if repair_target is not None:
         def _on_confirm():
             new_order = widget.get_order() if repair_target in ("G1", "G2") else None
-            new_pri = widget.get_pri_order() if repair_target in ("PT1", "PT3") else None
-            new_sec = widget.get_sec_order() if repair_target in ("PT1", "PT3") else None
+            new_pri = widget.get_pri_order() if repair_target in ("PT1", "PT2", "PT3") else None
+            new_sec = widget.get_sec_order() if repair_target in ("PT1", "PT2", "PT3") else None
             new_sec_polarity = (
                 widget.get_sec_polarity()
-                if repair_target in ("PT1", "PT3") and hasattr(widget, "get_sec_polarity")
+                if repair_target in ("PT1", "PT2", "PT3") and hasattr(widget, "get_sec_polarity")
                 else None
             )
             outcome = api.apply_blackbox_repair_attempt(

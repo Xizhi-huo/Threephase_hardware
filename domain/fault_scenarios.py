@@ -17,8 +17,8 @@ domain/fault_scenarios.py
 命名约定说明：
   - `pt1_pri_blackbox_order` 对应控制器运行态 `pt1_pri_blackbox_order`
   - `pt1_sec_blackbox_order` 对应控制器运行态 `pt1_sec_blackbox_order`
-兼容历史场景定义时，控制器仍会回退读取旧键名 `p1_pri_blackbox_order` /
-`pt2_sec_blackbox_order`，但新增场景统一使用 `pt1_*` 前缀。
+  - `pt2_sec_blackbox_order` 对应母排 PT2 二次侧黑盒运行态
+兼容历史场景定义时，控制器仍会回退读取旧键名 `p1_pri_blackbox_order`。
 """
 
 from domain.constants import E04_PT3_RATIO
@@ -515,6 +515,153 @@ SCENARIOS: dict = {
             '  ① 将Gen1接线盒A/B相端子对调恢复正序（BAC→ABC）\n'
             '  ② 将PT1一次侧B/C相端子对调恢复正序（ACB→ABC）\n'
             '  ③ 将PT1二次侧CAB端子排恢复正序接线（CAB→ABC）\n\n'
+            '点击【确认修复】继续测试流程。'
+        ),
+    },
+
+    # ════════════════════════════════════════════════════════════════════════
+    # PT2（母排PT）二次侧三线接反场景（E17-E21）
+    # 信号链：Gen1 → Bus → PT2一次侧 → PT2二次侧
+    # 第一步回路测试不受 PT2 二次侧影响；第二步线电压幅值仍正常。
+    # 逆序类在第三步相序仪暴露；正序轮换类第三步虚假正常，第四步压差矩阵暴露。
+    # ════════════════════════════════════════════════════════════════════════
+
+    'E17': {
+        'title': 'E17 — PT2 二次侧 B/C 相接反（ACB逆序）',
+        'category': 'I',
+        'label': '接线错误',
+        'description': (
+            '母排 PT2 二次侧 B/C 相端子对调，PT2_A 保持 A 相，PT2_B 输出 C 相，PT2_C 输出 B 相。'
+            '第一步回路与第二步线电压幅值均正常；第三步 PT2 相序仪显示 ACB 逆序；'
+            '第四步以 PT2 作为母排参考时，PT1/PT3 与 PT2 的 B、C 相核相矩阵出现错位。'
+        ),
+        'symptom': (
+            '第一步：三相回路通断结果正常。\n'
+            '第二步：PT2_AB/PT2_BC/PT2_CA 线电压幅值均正常。\n'
+            '第三步：PT2 相序仪显示 ACB（逆序）。\n'
+            '第四步：PT1_B↔PT2_C、PT1_C↔PT2_B 压差≈0V；同名 B/C 相压差异常。'
+        ),
+        'affected_steps': [3, 4],
+        'detection_step': 3,
+        'danger_level': 'recoverable',
+        'params': {
+            'pt2_sec_blackbox_order': ['A', 'C', 'B'],
+        },
+        'repair_prompt': (
+            '已定位故障：PT2 二次侧 B/C 相接线对调。\n\n'
+            '修复方法：打开 PT2 接线盒，将二次侧 B 相与 C 相端子恢复正序。\n\n'
+            '点击【确认修复】继续测试流程。'
+        ),
+    },
+
+    'E18': {
+        'title': 'E18 — PT2 二次侧 A/B 相接反（BAC逆序）',
+        'category': 'I',
+        'label': '接线错误',
+        'description': (
+            '母排 PT2 二次侧 A/B 相端子对调，PT2_A 输出 B 相，PT2_B 输出 A 相，PT2_C 保持 C 相。'
+            '第一步和第二步无法暴露该故障；第三步 PT2 相序仪显示 BAC 逆序；'
+            '第四步 PT1/PT3 与 PT2 的 A、B 相核相位置互换。'
+        ),
+        'symptom': (
+            '第一步：三相回路通断结果正常。\n'
+            '第二步：PT2 三组线电压幅值正常。\n'
+            '第三步：PT2 相序仪显示 BAC（逆序）。\n'
+            '第四步：PT1_A↔PT2_B、PT1_B↔PT2_A 压差≈0V；同名 A/B 相压差异常。'
+        ),
+        'affected_steps': [3, 4],
+        'detection_step': 3,
+        'danger_level': 'recoverable',
+        'params': {
+            'pt2_sec_blackbox_order': ['B', 'A', 'C'],
+        },
+        'repair_prompt': (
+            '已定位故障：PT2 二次侧 A/B 相接线对调。\n\n'
+            '修复方法：打开 PT2 接线盒，将二次侧 A 相与 B 相端子恢复正序。\n\n'
+            '点击【确认修复】继续测试流程。'
+        ),
+    },
+
+    'E19': {
+        'title': 'E19 — PT2 二次侧 A/C 相接反（CBA逆序）',
+        'category': 'I',
+        'label': '接线错误',
+        'description': (
+            '母排 PT2 二次侧 A/C 相端子对调，PT2_A 输出 C 相，PT2_B 保持 B 相，PT2_C 输出 A 相。'
+            '第一步和第二步仍表现正常；第三步 PT2 相序仪显示 CBA 逆序；'
+            '第四步 PT1/PT3 与 PT2 的 A、C 相核相位置互换。'
+        ),
+        'symptom': (
+            '第一步：三相回路通断结果正常。\n'
+            '第二步：PT2 三组线电压幅值正常。\n'
+            '第三步：PT2 相序仪显示 CBA（逆序）。\n'
+            '第四步：PT1_A↔PT2_C、PT1_C↔PT2_A 压差≈0V；同名 A/C 相压差异常。'
+        ),
+        'affected_steps': [3, 4],
+        'detection_step': 3,
+        'danger_level': 'recoverable',
+        'params': {
+            'pt2_sec_blackbox_order': ['C', 'B', 'A'],
+        },
+        'repair_prompt': (
+            '已定位故障：PT2 二次侧 A/C 相接线对调。\n\n'
+            '修复方法：打开 PT2 接线盒，将二次侧 A 相与 C 相端子恢复正序。\n\n'
+            '点击【确认修复】继续测试流程。'
+        ),
+    },
+
+    'E20': {
+        'title': 'E20 — PT2 二次侧整体轮换为 BCA（正序虚假正常）',
+        'category': 'I',
+        'label': '接线错误',
+        'description': (
+            '母排 PT2 二次侧三相整体轮换，PT2_A 输出 B 相，PT2_B 输出 C 相，PT2_C 输出 A 相。'
+            '第三步相序仪仍显示正序，容易形成虚假正常；第四步同名端子核相全部错位，'
+            '必须通过 PT1/PT2 或 PT3/PT2 压差矩阵发现。'
+        ),
+        'symptom': (
+            '第一步：三相回路通断结果正常。\n'
+            '第二步：PT2 三组线电压幅值正常。\n'
+            '第三步：PT2 相序仪显示 BCA（正序轮换，虚假正常）。\n'
+            '第四步：PT1_A↔PT2_C、PT1_B↔PT2_A、PT1_C↔PT2_B 压差≈0V；同名三相均异常。'
+        ),
+        'affected_steps': [3, 4],
+        'detection_step': 4,
+        'danger_level': 'recoverable',
+        'params': {
+            'pt2_sec_blackbox_order': ['B', 'C', 'A'],
+        },
+        'repair_prompt': (
+            '已定位故障：PT2 二次侧三相整体轮换为 BCA。\n\n'
+            '修复方法：打开 PT2 接线盒，将二次侧 A/B/C 三相端子恢复为 ABC 正序。\n\n'
+            '点击【确认修复】继续测试流程。'
+        ),
+    },
+
+    'E21': {
+        'title': 'E21 — PT2 二次侧整体轮换为 CAB（正序虚假正常）',
+        'category': 'I',
+        'label': '接线错误',
+        'description': (
+            '母排 PT2 二次侧三相整体轮换，PT2_A 输出 C 相，PT2_B 输出 A 相，PT2_C 输出 B 相。'
+            '第三步相序仪仍显示正序，第四步压差矩阵中同名三相全部错位，'
+            '需要覆盖三相核相才能定位 PT2 二次侧故障。'
+        ),
+        'symptom': (
+            '第一步：三相回路通断结果正常。\n'
+            '第二步：PT2 三组线电压幅值正常。\n'
+            '第三步：PT2 相序仪显示 CAB（正序轮换，虚假正常）。\n'
+            '第四步：PT1_A↔PT2_B、PT1_B↔PT2_C、PT1_C↔PT2_A 压差≈0V；同名三相均异常。'
+        ),
+        'affected_steps': [3, 4],
+        'detection_step': 4,
+        'danger_level': 'recoverable',
+        'params': {
+            'pt2_sec_blackbox_order': ['C', 'A', 'B'],
+        },
+        'repair_prompt': (
+            '已定位故障：PT2 二次侧三相整体轮换为 CAB。\n\n'
+            '修复方法：打开 PT2 接线盒，将二次侧 A/B/C 三相端子恢复为 ABC 正序。\n\n'
             '点击【确认修复】继续测试流程。'
         ),
     },
